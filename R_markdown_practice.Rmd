@@ -1,0 +1,64 @@
+---
+title: "Markdown_practice"
+author: "Laura Tibbs"
+date: "September 26, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## My practice
+
+Here's some code:
+```{r}
+dim(iris)
+```
+
+Here are options:
+
+By default, eval=T. This evaluates the code. (The code is also printed by default)
+```{r eval=T}
+dim(iris)
+```
+
+But if eval=F, the code will still print but not be evaluated.
+```{r eval=F}
+dim(iris)
+```
+
+You can also evaluate the code in-line, which will print ONLY the results of the code, not the code itself, like this:
+Two plus two equals `r 2+2`
+
+By default, echo = T. This prints the code. (The code is also evaluated by default)
+```{r echo=T}
+dim(iris)
+```
+
+But prevent code itself from printing using echo=F:
+```{r echo=F}
+dim(iris)
+```
+
+Finally, find other help at https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
