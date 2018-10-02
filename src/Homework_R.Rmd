@@ -1,0 +1,48 @@
+---
+title: "Homework_R"
+author: "Laura Tibbs"
+date: "October 2, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# BCB 546X R Homework:
+
+## Read in files:
+```{r}
+# Load packages:
+library(tidyverse)
+
+# Load data:
+# (assumes that working directory is set to the folder "src" within the project; if not, use setwd() to do so)
+genotypes <-  read_tsv("../data/fang_et_al_genotypes.txt")
+snps <- read_tsv("../data/snp_position.txt")
+```
+
+Next, check the "Parsed with column specification..." message in the console to be sure that R guessed the data types correctly:
+The `genotypes` file seems to have the correct column types.
+However, it initially appears that not all of the columns in`snps` do. `Chromosome` and `Position` should be integer rather than character columns. However, first check that this is in fact the case by looking at all values of these columns:
+```{r}
+unique(snps$Chromosome)
+unique(snps$Position)
+```
+This shows that there are in fact entries in these columns that are not integers, specifically "multiple" and "unknown". So, it is correct that these are not parsed as integers. If they really should have been integers, we could fix this by reading the data in again but manually specifying these column types using the `col_types` of `read_csv()`.
+
+## Transpose the genotype file:
+Use the function `t()` to transpose the `genotypes` file:
+
+```{r}
+tr.genotypes <- t(genotypes)
+str(tr.genotypes)
+typeof(tr.genotypes)
+```
+
+This transposed the file, but also made it into a character matrix rather than a data frame (a type of list) with columns of different types. Column names became row names. To make the data tidier to work with, we can convert the matrix to the tidyverse's `tibble` data structure:
+
+```{r}
+tr.genotypes.tibble <- as.tibble(tr.genotypes)
+typeof(tr.genotypes.tibble)
+head(tr.genotypes.tibble)
+```
